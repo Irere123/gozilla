@@ -270,3 +270,13 @@ fn valid_identifier_char(c: char) -> bool {
         _ => false,
     }
 }
+
+impl Value {
+    // return the size of a length in px, or zero for non-lengths
+    pub fn to_px(&self) -> f32 {
+        match *self {
+            Value::Length(f, Unit::Px) => f,
+            _ => 0.0,
+        }
+    }
+}
