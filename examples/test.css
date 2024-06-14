@@ -11,7 +11,7 @@ html {
   padding: 10px;
   border-width: 1px;
   margin: auto;
-  background: #ffffff;
+  background: #000000;
 }
 
 head {
@@ -40,5 +40,5 @@ head {
 
 span#name {
   background: red;
-  color: white;
+  color: blue;
 }
