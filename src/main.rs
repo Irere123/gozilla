@@ -29,9 +29,10 @@ fn main() {
         matches.opt_str(flag).unwrap_or(default.to_string())
     };
 
-    // Choose a format
+    // Choose a format:
     let png = match &str_arg("f", "png")[..] {
         "png" => true,
+        "pdf" => false,
         x => panic!("Unknown output format: {}", x),
     };
 
@@ -51,7 +52,7 @@ fn main() {
     let layout_root = layout::layout_tree(&style_root, viewport);
 
     // Create the output file
-    let filename = str_arg("0", if png { "output.png" } else { "output.pdf" });
+    let filename = str_arg("o", if png { "output.png" } else { "output.pdf" });
     // let mut file = BufWriter::new(File::create(&filename).unwrap());
 
     // Write to the file
