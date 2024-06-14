@@ -55,6 +55,18 @@ pub struct Color {
 
 impl Copy for Color {}
 
+// Parse a whole CSS stylesheet
+pub fn parse(source: String) -> StyleSheet {
+    let mut parser = Parser {
+        pos: 0,
+        input: source,
+    };
+
+    StyleSheet {
+        rules: parser.parse_rules(),
+    }
+}
+
 pub struct Parser {
     pub pos: usize,
     pub input: String,
@@ -153,6 +165,20 @@ impl Parser {
             selectors: self.parse_selectors(),
             declarations: self.parse_declarations(),
         }
+    }
+
+    // Parse a list of rules sets, separated by optional whitespace
+    fn parse_rules(&mut self) -> Vec<Rule> {
+        let mut rules = Vec::new();
+        loop {
+            self.consume_whitespace();
+            if self.eof() {
+                break;
+            }
+            rules.push(self.parse_rule());
+        }
+
+        rules
     }
 
     // Parse a comma-separated list of selectors.

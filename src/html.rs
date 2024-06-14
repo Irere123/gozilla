@@ -13,6 +13,22 @@ use std::collections::HashMap;
 
 use crate::dom;
 
+// Parse an HTML document and return the root element
+pub fn parse(source: String) -> dom::Node {
+    let mut nodes = Parser {
+        pos: 0,
+        input: source,
+    }
+    .parse_nodes();
+
+    // If the document contains a root element, just return it.Otherwise, create one.
+    if nodes.len() == 1 {
+        nodes.swap_remove(0)
+    } else {
+        dom::elem("html".to_string(), HashMap::new(), nodes)
+    }
+}
+
 pub struct Parser {
     pos: usize, // "usize" is an unsigned integer, similar to "size_t" in C
     input: String,
