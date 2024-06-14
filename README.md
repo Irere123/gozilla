@@ -15,7 +15,7 @@ Built with:
 ### Quick start
 
 - Install Rust
-- Clone the soruce code
+- Clone the source code
 - Run `cargo build` to build the browser engine and `cargo run` to run it
 
 By default the rendering engine will load test.html and test.css from the `examples` directory. You can use the `--html or -h` and `--css or -h` arguments to the engine executable to change the input files:
